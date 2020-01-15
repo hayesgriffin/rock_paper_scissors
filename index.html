@@ -1,0 +1,48 @@
+<html>
+
+<body>
+<script>
+
+let computerSelection;
+
+//Randomly generate computer's throw
+function computerPlay() {
+   let x = Math.random();
+   let text;
+
+    switch (true) {
+        case x >= 0.66:
+          text = "Rock";
+          break;
+        case x >= 0.33:
+          text = "Paper";
+          break;
+        case x >= 0:
+          text = "Scissors";
+          break;
+    }
+    computerSelection = text; 
+}
+computerPlay();
+
+
+//Get player's throw
+let playerString = window.prompt("Enter 'Rock', 'Paper', or 'Scissors'");
+
+//First letter of player's string to uppercase
+let firstLetter = playerString.substring(0,1);
+let first = firstLetter.toUpperCase();
+
+//Rest of player's string to lowercase
+let lastLetters = playerString.substring(1);
+let last = lastLetters.toLowerCase();
+
+//Concatenate player string to make Capital Case answer
+let playerSelection = first.concat(last);
+
+console.log(playerSelection);
+
+
+</script>
+</body>
+</html>
