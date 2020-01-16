@@ -4,9 +4,29 @@
 <script>
 
 let computerSelection;
+let playerSelection;
 
-//Randomly generate computer's throw
-function computerPlay() {
+//Get player's throw
+let playerString = window.prompt("Enter 'Rock', 'Paper', or 'Scissors'");
+
+//First letter of player's string to uppercase
+let firstLetter = playerString.substring(0,1);
+let first = firstLetter.toUpperCase();
+
+//Rest of player's string to lowercase
+let lastLetters = playerString.substring(1);
+let last = lastLetters.toLowerCase();
+
+//Concatenate player string to make Capital Case answer
+playerSelection = first.concat(last);
+
+
+//Play a round
+function playRound(playerSelection, computerSelection){
+  let display;
+
+  //Randomly generate computer's throw - maybe needs to be embedded in playRound function?
+  function computerPlay() {
    let x = Math.random();
    let text;
 
@@ -22,26 +42,39 @@ function computerPlay() {
           break;
     }
     computerSelection = text; 
+    console.log(computerSelection);
 }
-computerPlay();
+  computerPlay();
 
+  switch (true) {
+    case (playerSelection === computerSelection):
+      display = "Draw! Play again";
+      break;
+    case ((playerSelection === "Rock") && (computerSelection === "Paper")):
+      display = "You lose! Paper beats rock.";
+      break;
+    case ((playerSelection === "Rock") && (computerSelection === "Scissors")):
+      display = "You win! Rock beats scissors.";
+      break;
+    case ((playerSelection === "Paper") && (computerSelection === "Rock")):
+      display = "You win! Paper beats rock.";
+      break;
+    case ((playerSelection === "Paper") && (computerSelection === "Scissors")):
+      display = "You lose! Scissors beats paper.";
+      break;
+    case ((playerSelection === "Scissors") && (computerSelection === "Paper")):
+      display = "You win! Scissors beats paper.";
+      break;
+    case ((playerSelection === "Scissors") && (computerSelection === "Rock")):
+      display = "You lose! Rock beats scissors.";
+      break;
+  }
 
-//Get player's throw
-let playerString = window.prompt("Enter 'Rock', 'Paper', or 'Scissors'");
+return display;
 
-//First letter of player's string to uppercase
-let firstLetter = playerString.substring(0,1);
-let first = firstLetter.toUpperCase();
+}
 
-//Rest of player's string to lowercase
-let lastLetters = playerString.substring(1);
-let last = lastLetters.toLowerCase();
-
-//Concatenate player string to make Capital Case answer
-let playerSelection = first.concat(last);
-
-console.log(playerSelection);
-
+console.log(playRound(playerSelection, computerSelection));
 
 </script>
 </body>
