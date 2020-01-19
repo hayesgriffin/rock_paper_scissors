@@ -20,61 +20,73 @@ let last = lastLetters.toLowerCase();
 //Concatenate player string to make Capital Case answer
 playerSelection = first.concat(last);
 
+/* Creating loop function to play 5 rounds, keep score, and declare
+   a winner or loser at the end of the game
+function game() {
 
-//Play a round
-function playRound(playerSelection, computerSelection){
-  let display;
+  for (let round = 0; round < 5; round++){
 
-  //Randomly generate computer's throw - maybe needs to be embedded in playRound function?
-  function computerPlay() {
-   let x = Math.random();
-   let text;
 
-    switch (true) {
-        case x >= 0.66:
-          text = "Rock";
-          break;
-        case x >= 0.33:
-          text = "Paper";
-          break;
-        case x >= 0:
-          text = "Scissors";
-          break;
-    }
-    computerSelection = text; 
-    console.log(computerSelection);
-}
-  computerPlay();
-
-  switch (true) {
-    case (playerSelection === computerSelection):
-      display = "Draw! Play again";
-      break;
-    case ((playerSelection === "Rock") && (computerSelection === "Paper")):
-      display = "You lose! Paper beats rock.";
-      break;
-    case ((playerSelection === "Rock") && (computerSelection === "Scissors")):
-      display = "You win! Rock beats scissors.";
-      break;
-    case ((playerSelection === "Paper") && (computerSelection === "Rock")):
-      display = "You win! Paper beats rock.";
-      break;
-    case ((playerSelection === "Paper") && (computerSelection === "Scissors")):
-      display = "You lose! Scissors beats paper.";
-      break;
-    case ((playerSelection === "Scissors") && (computerSelection === "Paper")):
-      display = "You win! Scissors beats paper.";
-      break;
-    case ((playerSelection === "Scissors") && (computerSelection === "Rock")):
-      display = "You lose! Rock beats scissors.";
-      break;
+    
   }
 
-return display;
-
 }
+*/
 
-console.log(playRound(playerSelection, computerSelection));
+      //Play a round
+      function playRound(playerSelection, computerSelection){
+        let display;
+
+        //Randomly generate computer's throw - maybe needs to be embedded in playRound function?
+        function computerPlay() {
+        let x = Math.random();
+        let text;
+
+          switch (true) {
+              case x >= 0.66:
+                text = "Rock";
+                break;
+              case x >= 0.33:
+                text = "Paper";
+                break;
+              case x >= 0:
+                text = "Scissors";
+                break;
+          }
+          computerSelection = text; 
+          console.log(computerSelection);
+      }
+        computerPlay();
+
+        switch (true) {
+          case (playerSelection === computerSelection):
+            display = "Draw! Play again";
+            break;
+          case ((playerSelection === "Rock") && (computerSelection === "Paper")):
+            display = "You lose! Paper beats rock.";
+            break;
+          case ((playerSelection === "Rock") && (computerSelection === "Scissors")):
+            display = "You win! Rock beats scissors.";
+            break;
+          case ((playerSelection === "Paper") && (computerSelection === "Rock")):
+            display = "You win! Paper beats rock.";
+            break;
+          case ((playerSelection === "Paper") && (computerSelection === "Scissors")):
+            display = "You lose! Scissors beats paper.";
+            break;
+          case ((playerSelection === "Scissors") && (computerSelection === "Paper")):
+            display = "You win! Scissors beats paper.";
+            break;
+          case ((playerSelection === "Scissors") && (computerSelection === "Rock")):
+            display = "You lose! Rock beats scissors.";
+            break;
+        }
+
+      return display;
+
+      }
+
+      console.log(playRound(playerSelection, computerSelection));
 
 </script>
 </body>
