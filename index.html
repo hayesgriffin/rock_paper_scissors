@@ -5,88 +5,107 @@
 
 let computerSelection;
 let playerSelection;
+let computerScore = 0;
+let playerScore = 0;
 
-//Get player's throw
-let playerString = window.prompt("Enter 'Rock', 'Paper', or 'Scissors'");
-
-//First letter of player's string to uppercase
-let firstLetter = playerString.substring(0,1);
-let first = firstLetter.toUpperCase();
-
-//Rest of player's string to lowercase
-let lastLetters = playerString.substring(1);
-let last = lastLetters.toLowerCase();
-
-//Concatenate player string to make Capital Case answer
-playerSelection = first.concat(last);
-
-/* Creating loop function to play 5 rounds, keep score, and declare
-   a winner or loser at the end of the game
-function game() {
-
-  for (let round = 0; round < 5; round++){
+//Play a round
+function playRound(playerSelection, computerSelection){
+let display;
 
 
-    
+  //Randomly generate computer's throw - maybe needs to be embedded in playRound function?
+  function computerPlay() {
+  let x = Math.random();
+  let text;
+
+    switch (true) {
+      case x >= 0.66:
+        text = "Rock";
+        break;
+      case x >= 0.33:
+        text = "Paper";
+        break;
+      case x >= 0:
+        text = "Scissors";
+        break;
+    }
+    computerSelection = text; 
+ //   console.log(computerSelection);
   }
 
+computerPlay();
+
+switch (true) {
+  case (playerSelection === computerSelection):
+    display = "Draw! Play again";
+    break;
+  case ((playerSelection === "Rock") && (computerSelection === "Paper")):
+    display = "You lose! Paper beats rock.";
+    computerScore++;
+    break;
+  case ((playerSelection === "Rock") && (computerSelection === "Scissors")):
+    display = "You win! Rock beats scissors.";
+    playerScore++;
+    break;
+  case ((playerSelection === "Paper") && (computerSelection === "Rock")):
+    display = "You win! Paper beats rock.";
+    playerScore++;
+    break;
+  case ((playerSelection === "Paper") && (computerSelection === "Scissors")):
+    display = "You lose! Scissors beats paper.";
+    computerScore++;
+    break;
+  case ((playerSelection === "Scissors") && (computerSelection === "Paper")):
+    display = "You win! Scissors beats paper.";
+    playerScore++;
+    break;
+  case ((playerSelection === "Scissors") && (computerSelection === "Rock")):
+    display = "You lose! Rock beats scissors.";
+    computerScore++;
+    break;
 }
-*/
 
-      //Play a round
-      function playRound(playerSelection, computerSelection){
-        let display;
+return display;
 
-        //Randomly generate computer's throw - maybe needs to be embedded in playRound function?
-        function computerPlay() {
-        let x = Math.random();
-        let text;
+}
 
-          switch (true) {
-              case x >= 0.66:
-                text = "Rock";
-                break;
-              case x >= 0.33:
-                text = "Paper";
-                break;
-              case x >= 0:
-                text = "Scissors";
-                break;
-          }
-          computerSelection = text; 
-          console.log(computerSelection);
-      }
-        computerPlay();
+// Creating loop function to play 5 rounds, keep score, and declare
+// a winner or loser at the end of the game
 
-        switch (true) {
-          case (playerSelection === computerSelection):
-            display = "Draw! Play again";
-            break;
-          case ((playerSelection === "Rock") && (computerSelection === "Paper")):
-            display = "You lose! Paper beats rock.";
-            break;
-          case ((playerSelection === "Rock") && (computerSelection === "Scissors")):
-            display = "You win! Rock beats scissors.";
-            break;
-          case ((playerSelection === "Paper") && (computerSelection === "Rock")):
-            display = "You win! Paper beats rock.";
-            break;
-          case ((playerSelection === "Paper") && (computerSelection === "Scissors")):
-            display = "You lose! Scissors beats paper.";
-            break;
-          case ((playerSelection === "Scissors") && (computerSelection === "Paper")):
-            display = "You win! Scissors beats paper.";
-            break;
-          case ((playerSelection === "Scissors") && (computerSelection === "Rock")):
-            display = "You lose! Rock beats scissors.";
-            break;
-        }
+function game() {
 
-      return display;
+  //Get player's throw
+  let playerString = window.prompt("Enter 'Rock', 'Paper', or 'Scissors'");
 
-      }
+  //First letter of player's string to uppercase
+  let firstLetter = playerString.substring(0,1);
+  let first = firstLetter.toUpperCase();
 
-      console.log(playRound(playerSelection, computerSelection));
+  //Rest of player's string to lowercase
+  let lastLetters = playerString.substring(1);
+  let last = lastLetters.toLowerCase();
+
+  //Concatenate player string to make Capital Case answer
+  playerSelection = first.concat(last);
+
+
+  console.log(playRound(playerSelection, computerSelection));
+}
+
+
+for (let round = 0; round < 5; round++){
+    game();
+}
+
+
+if (computerScore > playerScore) {
+  console.log('Computer wins!');
+} else if (playerScore > computerScore) {
+  console.log('Player wins!');
+} else if (computerScore == playerScore) {
+  console.log('Draw! Game Over');
+}
+
 
 </script>
 </body>
